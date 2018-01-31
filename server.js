@@ -1,5 +1,10 @@
 const http = require('http');
+const render = require('./lib/render');
 const {publicStatic, home, search, notFound} = require('./routes');
+
+http.ServerResponse.prototype.render = render;
+
+
 http.createServer((req, res) => {
     if (req.url.match(/\.(html|css|js|png)$/)) {
         publicStatic(req, res);
